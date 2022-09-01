@@ -102,12 +102,15 @@ export class TicketsComponent implements OnInit {
   //abrir modal de informacion
   async open(id?:any,content?:any){
 
+    const loading: any = this.loadingFireToast('Consultando información');
+
     this.notas = [];
     id = {id: id}
     await this.apiService.post('ticketbyid',id).subscribe(
      async (res: any) => {
       this.databyid = res;
-      console.log(this.databyid);
+      
+      //console.log(this.databyid);
       
       },
       (error: any) => {
@@ -136,10 +139,8 @@ export class TicketsComponent implements OnInit {
           let newarray = this.notas.push(nota)
           
         });
-
-        
-        
-  
+        loading.close();
+        this.modalService.open(content, { centered: true, size: 'lg' });
        },
        (error: any) => {
        console.log('error consultando notas', error);
@@ -147,7 +148,7 @@ export class TicketsComponent implements OnInit {
        }
     );
 
-    this.modalService.open(content, { centered: true, size: 'lg' });
+    
     
 
   }
@@ -215,7 +216,7 @@ export class TicketsComponent implements OnInit {
           confirmButtonColor: '#3085d6',
           confirmButtonText: 'OK',
           timer:4000,
-        }).then((results =>{
+        }).then( (results =>{
           window.location.reload();
           this.modalService.dismissAll();
 
@@ -233,6 +234,7 @@ export class TicketsComponent implements OnInit {
   // obtener todos los tickets
   getinfo(filter?:any){
   this.apiService.post('tickets',this.client).subscribe(
+    
     async (res: any) => {
       this.data = res;
       console.log(this.data);
@@ -255,15 +257,15 @@ export class TicketsComponent implements OnInit {
   
  
   loadingFireToast(title:any) {
-  return Swal.fire({
-    title,
-    allowEscapeKey: false,
-    allowOutsideClick: false,
-    showConfirmButton: false,
-    didOpen: () => {
-    Swal.showLoading();
-    },
-  });
+    return Swal.fire({
+      title,
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      showConfirmButton: false,
+      didOpen: () => {
+      Swal.showLoading();
+      },
+    });
   }
   toastFireError(res :any) {
     Swal.fire({
@@ -289,9 +291,6 @@ export class TicketsComponent implements OnInit {
   async filtrardatos(){
     
     this.getinfo()
-    
-    
-    
     
   }
 
