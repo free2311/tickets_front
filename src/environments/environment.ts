@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  API: "http://localhost:3000/"
+  API: 'http://looWSM_services.local/api/',
+  // API: 'https://gcp-back-master-rcbmb7p2oa-uc.a.run.app/api/',
 };
 
 /*

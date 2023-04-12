@@ -247,6 +247,7 @@ export class NewTicketComponent implements OnInit {
     console.log("id enviado al servicio ",this.insertid);
     
     if(this.archivos.length >= 1){
+      
       const body = new FormData();
       this.archivos.forEach((archivo: any) => {
       body.append( "file",archivo)

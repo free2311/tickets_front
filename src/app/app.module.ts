@@ -59,11 +59,6 @@ import {CdkAccordionModule} from '@angular/cdk/accordion';
     MatListModule,
     CommonModule,
     CdkAccordionModule
-    
-    
-   
-    
-    
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
